@@ -1,0 +1,34 @@
+{
+  "name": "ronr-backend",
+  "version": "1.0.0",
+  "description": "Node.js backend for RONR Meeting Companion",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=text --reporter=html mocha test/test.js --exit",
+    "start": "echo '`npm run dev` will give you better results' && node index.js",
+    "dev": "nodemon index.js",
+    "docker": "./node_modules/nodemon/bin/nodemon.js index.js"
+  },
+  "keywords": [],
+  "author": "Shubham Kulkarni",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.12.1",
+    "mongoose": "^5.9.13",
+    "socket.io": "^2.3.0",
+    "twilio": "^3.43.0",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^7.1.2",
+    "nodemon": "^2.0.3",
+    "nyc": "^15.0.1"
+  }
+}
