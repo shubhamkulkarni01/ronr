@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "lint": "eslint ."
+    "storybook": "start-storybook",
+    "lint": "eslint . --fix"
   },
   "author": "Shubham Kulkarni",
   "license": "GPL-3.0",
@@ -24,6 +25,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
+    "@storybook/react": "^5.3.19",
     "eslint": "7.2.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.21.2",

@@ -7,15 +7,15 @@ const morgan = require('morgan');
 
 const app = express();
 
-//Custom Middlewares
+// Custom Middlewares
 
-//allow for Content-Type JSON on requests
+// allow for Content-Type JSON on requests
 app.use(express.json());
-//allow for cookies to be set by requests - for user auth
+// allow for cookies to be set by requests - for user auth
 app.use(require('cookie-parser')());
-//allow for CORS requests
+// allow for CORS requests
 app.use(cors({ origin: 'http://localhost:3000', credentials: true, exposedHeaders: ['user_found'] }));
-//print debuggable messages using morgan
+// print debuggable messages using morgan
 app.use(morgan('tiny'));
 
 // DEFAULT TESTING ROUTE
