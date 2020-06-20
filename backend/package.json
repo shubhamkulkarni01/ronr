@@ -8,7 +8,7 @@
     "start": "echo '`npm run dev` will give you better results' && node index.js",
     "dev": "nodemon index.js",
     "docker": "./node_modules/nodemon/bin/nodemon.js index.js",
-    "lint": "eslint ."
+    "lint": "eslint . --fix"
   },
   "keywords": [],
   "author": "Shubham Kulkarni",
@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "firebase-admin": "^8.12.1",
     "mongoose": "^5.9.13",
+    "morgan": "^1.10.0",
     "socket.io": "^2.3.0",
     "twilio": "^3.43.0",
     "validator": "^13.0.0"
@@ -28,7 +29,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "eslint": "^7.3.0",
+    "eslint": "7.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.21.2",
     "mocha": "^7.1.2",
