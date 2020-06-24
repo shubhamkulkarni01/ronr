@@ -3,8 +3,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { ThemeProvider } from 'styled-components';
 
-import Navbar from './Navbar';
+import {AuthProvider} from '../utils/auth';
 
+import Navbar from './Navbar';
 import LoginPage from './LoginPage';
 
 const theme = {
@@ -15,12 +16,14 @@ const theme = {
 const Router = () => (
   <ThemeProvider theme={theme}>
     <BrowserRouter>
-      <div className="app" id="main-component">
-        <Navbar />
-        <Switch>
-          <Route path="/" component={LoginPage} />
-        </Switch>
-      </div>
+      <AuthProvider>
+        <div className="app" id="main-component">
+          <Navbar />
+          <Switch>
+            <Route path="/" component={LoginPage} />
+          </Switch>
+        </div>
+      </AuthProvider>
     </BrowserRouter>
   </ThemeProvider>
 );

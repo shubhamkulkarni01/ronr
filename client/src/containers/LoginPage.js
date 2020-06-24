@@ -3,8 +3,10 @@ import React from 'react';
 import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 
-const Main = styled('div')`
-  height: 90vh;
+import Auth from '../utils/auth'
+
+const LoginBackground = styled('div')`
+  height: 92vh;
   background-color: #FFFFFF;
   text-align: center;
 `;
@@ -16,12 +18,12 @@ const LoginButton = styled(Button)`
   border-radius: 20px;
   font-size: 10vh;
   text-align: center;
-  margin: 40vh 0vh;
+  margin: 25vh 0vh 0vh 0vh;
   transition: color 0.3s ease-in-out,
               background-color 0.3s ease-in-out,
               border-color 0.3s ease-in-out;
+  box-shadow: none;
 
-box-shadow: none;
   &:focus{
     background-color: #fff!important;
     color: ${props => props.theme.title};
@@ -32,19 +34,20 @@ box-shadow: none;
 
   &:active:focus, &:active, &:hover{
     color: #fff!important;
-    background-color: #aac7ff!important;
-    border-color: #aac7ff!important;
+    background-color: ${props => props.theme.title};
+    border-color: ${props => props.theme.title};
     box-shadow: none;
   }
 `;
 
 function LoginPage() {
-  console.log('login page')
+
+  const {handleSignOn} = React.useContext(Auth)
 
   return (
-    <Main>
-      <LoginButton variant="primary" onClick={() => console.log('clicked')}>LOGIN</LoginButton>
-    </Main>
+    <LoginBackground>
+      <LoginButton variant="primary" onClick={handleSignOn}>LOGIN</LoginButton>
+    </LoginBackground>
   );
 }
 
