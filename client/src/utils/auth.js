@@ -25,11 +25,9 @@ export const AuthProvider = (props) => {
   }
 
   const handleSignOn = () => {
-    db.auth().signInWithPopup(GoogleSignOn).then(result => {
-      const email = result.user.email
-
-      return db.auth().currentUser.getIdToken()
-    }).then(token => {
+    db.auth().signInWithPopup(GoogleSignOn).then(() => 
+      db.auth().currentUser.getIdToken()
+    ).then(token => {
       if (token) {
         return serverLogin(token)
       }
@@ -47,8 +45,7 @@ export const AuthProvider = (props) => {
   const serverLogin = React.useCallback(credential => {
     const body = {credential}
     request('/api/user/login', {body}, true).then(response => {
-      const {body, headers} = response
-      const newUser = headers.get('user_found') === "0"
+      const { body } = response
       setUser(body)
       if (location.pathname === '/') {
         history.push('/home')
