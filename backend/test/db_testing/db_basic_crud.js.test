@@ -1,0 +1,8 @@
+module.exports = dependencies => {
+  
+  const {app, chai} = dependencies
+
+  describe('Basic CRUD functionality', function(done){
+    require('./user.js.test')(dependencies)
+  })
+}

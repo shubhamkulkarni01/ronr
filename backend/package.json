@@ -4,7 +4,8 @@
   "description": "Node.js backend for RONR Meeting Companion",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=text --reporter=html mocha test/test.js --exit",
+    "test": "mocha test/test.js --exit",
+    "cov": "nyc --reporter=text --reporter=html mocha test/test.js --exit",
     "start": "echo '`npm run dev` will give you better results' && node index.js",
     "dev": "nodemon index.js",
     "docker": "./node_modules/nodemon/bin/nodemon.js index.js",
@@ -15,6 +16,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "axios": "^0.19.2",
+    "chalk": "^4.1.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

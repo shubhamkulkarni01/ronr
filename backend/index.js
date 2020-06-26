@@ -1,4 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').resolve(__dirname, '.env') });
+
+const chalk = require('chalk');
 
 const express = require('express');
 
@@ -19,12 +21,19 @@ app.use(cors({ origin: 'http://localhost:3000', credentials: true, exposedHeader
 app.use(morgan('tiny'));
 
 // DEFAULT TESTING ROUTE
-app.get('/test', (req, res) => {
+app.get('/greeting', (req, res) => {
   const name = req.query.name || 'World';
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
 });
 
-app.listen(3000, () => console.log('Node running on localhost:3000'));
+app.use('/', require('./routers/auth'));
+
+app.use('/api/user', require('./routers/user'));
+
+const port = process.env.PORT || 3001;
+const server = app.listen(port, () => console.log(chalk`Node listening on port {green 3000}`));
+
+const socket = require('./socket/init')(server);
 
 module.exports = app;
