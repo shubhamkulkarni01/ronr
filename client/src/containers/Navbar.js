@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import Auth from '../utils/auth';
 
-import { Navbar, Title, Link } from '../components/Navbar.js';
+import { Navbar, NavTitle, NavIcon, NavLink } from '../components/Navbar.js';
 
 const NavigationBar = () => {
 
@@ -10,14 +10,14 @@ const NavigationBar = () => {
 
   return (
     <Navbar bg="dark">
-      <Link to="/">
-        <Title>
+      <NavLink to="/">
+        <NavTitle>
          ronr 
-        </Title>
-      </Link>
+        </NavTitle>
+      </NavLink>
       {
         user && 
-          <Icon style={{align: 'right'}}>face</Icon>
+          <NavIcon style={{align: 'right'}}>face</NavIcon>
       }
     </Navbar>
   )

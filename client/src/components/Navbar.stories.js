@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import { Navbar, Link, Title, Icon } from './Navbar.js';
+import { Navbar, NavTitle, NavIcon, NavLink } from './Navbar.js';
 
 export default {
   title: 'Navbar',
@@ -10,32 +10,34 @@ export default {
 
 export const Empty = () => <Navbar onClick={action('navbar clicked')}/>
 
-export const WithTitle = () => ( 
+export const WithNavTitle = () => ( 
 <Navbar onClick={action('navbar clicked')}> 
-  <Title> Hello World </Title> 
+  <NavTitle> Hello World </NavTitle> 
 </Navbar>
 );
 
-export const WithTitleAndLink = () => (
+export const WithNavTitleAndNavLink = () => (
 <Navbar onClick={action('navbar clicked')}> 
-  <Link>
-    <Title onClick={action('go home')}> Hello World </Title> 
-  </Link>
+  <NavLink>
+    <NavTitle onClick={action('go home')}> Hello World </NavTitle> 
+  </NavLink>
 </Navbar>
 )
 
-export const WithTitleAndFace = () => (
+export const WithNavTitleAndFace = () => (
 <Navbar> 
-  <Title onClick={action('go home')}> Hello World </Title> 
-  <Icon onClick={action('account info')}>face</Icon>
+  <NavTitle onClick={action('go home')}> Hello World </NavTitle> 
+  <NavIcon onClick={action('account info')}>face</NavIcon>
 </Navbar>
 );
 
-export const WithTitleLinkAndFace= () => (
+export const WithAll = () => (
 <Navbar> 
-  <Link>
-    <Title onClick={action('go home')}> Hello World </Title> 
-  </Link>
-  <Icon onClick={action('account info')}>face</Icon>
+  <NavLink>
+    <NavTitle onClick={action('go home')}> Hello World </NavTitle> 
+  </NavLink>
+  <NavLink>
+    <NavIcon onClick={action('account info')}>face</NavIcon>
+  </NavLink>
 </Navbar>
 );

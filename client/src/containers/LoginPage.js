@@ -2,7 +2,8 @@ import React from 'react';
 
 import Auth from '../utils/auth'
  
-import { LoginButton, LoginBackground } from '../components/LoginPage.js';
+import { PrimaryButton } from '../components/Button.js';
+import { LoginBackground } from '../components/LoginPage.js';
 
 function LoginPage() {
 
@@ -10,7 +11,8 @@ function LoginPage() {
 
   return (
     <LoginBackground>
-      <LoginButton onClick={handleSignOn}>login</LoginButton>
+      <PrimaryButton style={{margin: '25vh 0vh 0vh 0vh'}} onClick={handleSignOn}>login</PrimaryButton>
+  
     </LoginBackground>
   );
 }
