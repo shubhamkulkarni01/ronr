@@ -6,8 +6,6 @@ const router = new express.Router();
 
 // CREATE / READ
 router.post('/login', async (req, res) => {
-  console.log('request arrived to /login');
-
   const query = { email: req.identity.email };
 
   let user = await User.findOne(query);
@@ -25,7 +23,6 @@ router.post('/login', async (req, res) => {
     return res.status(200).send(JSON.stringify(user));
   }
   console.log('User successfully found');
-  console.log(user);
   res.setHeader('user_found', 1);
   return res.status(200).send(JSON.stringify(user));
 });

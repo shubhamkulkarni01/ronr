@@ -1,4 +1,5 @@
 require('dotenv').config({ path: require('path').resolve(__dirname, '.env') });
+require('./models/db');
 
 const chalk = require('chalk');
 
@@ -32,7 +33,7 @@ app.use('/', require('./routers/auth'));
 app.use('/api/user', require('./routers/user'));
 
 const port = process.env.PORT || 3001;
-const server = app.listen(port, () => console.log(chalk`Node listening on port {green 3000}`));
+const server = app.listen(port, () => console.log(chalk`Node listening on port {green ${port}}`));
 
 const socket = require('./socket/init')(server);
 

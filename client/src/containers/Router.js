@@ -8,6 +8,9 @@ import {AuthProvider} from '../utils/auth';
 
 import Navbar from './Navbar';
 import LoginPage from './LoginPage';
+import HomePage from './HomePage';
+import JoinPage from './JoinPage';
+import CreatePage from './CreatePage';
 
 const Router = () => (
   <ThemeProvider theme={material}>
@@ -15,7 +18,10 @@ const Router = () => (
       <AuthProvider>
         <Navbar />
         <Switch>
-          <Route path="/" component={LoginPage} />
+          <Route exact path="/" component={LoginPage} />
+          <Route path="/home" component={HomePage} />
+          <Route path="/join" component={JoinPage} />
+          <Route path="/create" component={CreatePage} />
         </Switch>
       </AuthProvider>
     </BrowserRouter>

@@ -12,7 +12,6 @@ function LoginPage() {
   return (
     <LoginBackground>
       <PrimaryButton style={{margin: '25vh 0vh 0vh 0vh'}} onClick={handleSignOn}>login</PrimaryButton>
-  
     </LoginBackground>
   );
 }

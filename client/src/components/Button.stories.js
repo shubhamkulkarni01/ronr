@@ -12,8 +12,17 @@ export const SingleButton = () => <PrimaryButton onClick={action('clicked')}>log
 export const VerticalStack= () => {
   return (
     <>
-      <VerticalStackButton onClick={action('clicked')}>Join</VerticalStackButton>
-      <VerticalStackButton onClick={action('clicked')}>Create</VerticalStackButton>
+      <VerticalStackButton onClick={action('join')}>Join</VerticalStackButton>
+      <VerticalStackButton onClick={action('create')}>Create</VerticalStackButton>
+    </>
+  );
+}
+
+export const VerticalStackCustomSpacing= () => {
+  return (
+    <>
+      <VerticalStackButton style={{margin: '10vh'}} onClick={action('join')}>Join</VerticalStackButton>
+      <VerticalStackButton style={{margin: '10vh'}} onClick={action('create')}>Create</VerticalStackButton>
     </>
   );
 }

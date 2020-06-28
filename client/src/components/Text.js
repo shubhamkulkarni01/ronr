@@ -17,3 +17,14 @@ export const Icon = styled(bootstrap_Navbar.Brand)`
   margin: 0px;
   padding: 0px;
 `;
+
+export const H1 = styled('h1')`
+  border-color: ${props => props.theme.button.text};
+  color: ${props => props.theme.button.text};
+
+  font-family: Poppins;
+  font-size: xx-large;
+  text-align: center;
+  margin: 3vh 3vw;
+  display: inline-block;
+`;

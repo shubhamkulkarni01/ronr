@@ -26,16 +26,18 @@ export const NavIcon = styled(Icon)`
   font-size: 6vh;
   height: 8vh;
   color: ${props => props.theme.nav.title};
+  cursor: default;
 
   &:hover {
     color: ${props => props.theme.nav.highlight};
+    cursor: default;
   }
 `;
 
 export const NavLink = styled(router_Link)`
-  text-decoration: underline ${props => props.theme.nav.title};
+  text-decoration: underline dotted ${props => props.theme.nav.title};
   
   &:hover {
-    text-decoration: underline ${props => props.theme.nav.highlight};
+    text-decoration-color: ${props => props.theme.nav.highlight};
   }
 `;
