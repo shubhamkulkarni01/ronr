@@ -10,8 +10,8 @@ const NavigationBar = () => {
 
   return (
     <Navbar bg="dark">
-      <NavLink style={{textDecorationStyle: 'dotted!important'}} to="/">
-        <NavTitle style={{textDecorationStyle: 'dotted!important'}}>
+      <NavLink to="/home">
+        <NavTitle>
          ronr 
         </NavTitle>
       </NavLink>

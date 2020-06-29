@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import material from '../themes/material';
 
 import {AuthProvider} from '../utils/auth';
+import {SocketProvider} from '../utils/socket';
 
 import Navbar from './Navbar';
 import LoginPage from './LoginPage';
@@ -16,13 +17,15 @@ const Router = () => (
   <ThemeProvider theme={material}>
     <BrowserRouter>
       <AuthProvider>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={LoginPage} />
-          <Route path="/home" component={HomePage} />
-          <Route path="/join" component={JoinPage} />
-          <Route path="/create" component={CreatePage} />
-        </Switch>
+        <SocketProvider>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={LoginPage} />
+            <Route path="/home" component={HomePage} />
+            <Route path="/join" component={JoinPage} />
+            <Route path="/create" component={CreatePage} />
+          </Switch>
+        </SocketProvider>
       </AuthProvider>
     </BrowserRouter>
   </ThemeProvider>

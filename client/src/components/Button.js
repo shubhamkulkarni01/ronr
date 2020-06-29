@@ -37,7 +37,7 @@ export const PrimaryButton = styled(Button)`
   
 export const VerticalStackButton = props => {
   return (
-  <div style={{...props.style, display: 'block', textAlign: 'center'}}>
+  <div style={{...props.style, display: 'block', margin: 'auto', textAlign: 'center'}}>
     <PrimaryButton onClick={props.onClick}>{props.children}</PrimaryButton>
   </div>
   )

@@ -1,23 +1,21 @@
 import React from 'react';
-
-import Auth from '../utils/auth'
  
 import { PrimaryButton } from '../components/Button.js';
 import { H1 } from '../components/Text.js';
-
-import { Link } from 'react-router-dom';
+import { Input } from '../components/Form.js';
 
 function JoinPage() {
 
-  const {handleSignOn} = React.useContext(Auth);
+  const [code, setCode] = React.useState('');
   
   return (
     <>
-        <div style={{marginTop: '20vh', marginBottom: '7vh', textAlign: 'center'}}>
+        <div style={{margin: '20vh 0vw 7vh 0vw', display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
           <H1>
             enter meeting code: 
           </H1>
-          <input type="text" pattern="[0-9]{6}" size="6"/> 
+          <Input value={code} onChange={e => setCode(e.target.value)} 
+                 type='text' variant='outlined' label='name'/> 
         </div>
         <div style={{textAlign: 'center'}}>
           <PrimaryButton style={{minWidth: '16vw', fontSize: '6vh'}}>
