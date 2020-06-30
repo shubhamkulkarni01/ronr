@@ -20,7 +20,6 @@ module.exports = socket => {
     const meeting = new Meeting(data);
     meeting.host = socket.user._id;
     meeting.code = await generateRandomNumber();
-    meeting.participants = [meeting.host];
     await meeting.save();
 
     socket.join(meeting.code, () => ack(meeting));
