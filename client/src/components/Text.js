@@ -19,8 +19,8 @@ export const Icon = styled(bootstrap_Navbar.Brand)`
 `;
 
 export const H1 = styled('h1')`
-  border-color: ${props => props.theme.button.text};
-  color: ${props => props.theme.button.text};
+  border-color: ${props => props.color || props.theme.button.text};
+  color: ${props => props.color || props.theme.button.text};
 
   font-family: Poppins;
   font-size: xx-large;

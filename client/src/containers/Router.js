@@ -5,27 +5,26 @@ import { ThemeProvider } from 'styled-components';
 import material from '../themes/material';
 
 import {AuthProvider} from '../utils/auth';
-import {SocketProvider} from '../utils/socket';
 
 import Navbar from './Navbar';
 import LoginPage from './LoginPage';
 import HomePage from './HomePage';
 import JoinPage from './JoinPage';
 import CreatePage from './CreatePage';
+import MeetingPage from './MeetingPage';
 
 const Router = () => (
   <ThemeProvider theme={material}>
     <BrowserRouter>
       <AuthProvider>
-        <SocketProvider>
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={LoginPage} />
-            <Route path="/home" component={HomePage} />
-            <Route path="/join" component={JoinPage} />
-            <Route path="/create" component={CreatePage} />
-          </Switch>
-        </SocketProvider>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={LoginPage} />
+          <Route path="/home" component={HomePage} />
+          <Route path="/join" component={JoinPage} />
+          <Route path="/create" component={CreatePage} />
+          <Route path="/meeting" component={MeetingPage} />
+        </Switch>
       </AuthProvider>
     </BrowserRouter>
   </ThemeProvider>

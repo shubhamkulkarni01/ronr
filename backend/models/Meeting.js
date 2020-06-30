@@ -13,9 +13,24 @@ const meetingSchema = new mongoose.Schema({
     type: ObjectId,
     ref: 'User'
   },
+  participants: [{
+    type: ObjectId,
+    ref: 'User'
+  }],
   date: {
     type: Date, 
     default: Date.now
+  }, 
+  code: {
+    type: Number,
+    index: {
+      unique: true,
+      partialFilterExpression: {code: {$type: 'number'}}
+    },
+    validate(value) {
+      if(value !== null && (value > 9999 || value < 0))
+        throw new Error('Email is invalid');
+    },
   }
 }, { collection: 'Meetings' });
 

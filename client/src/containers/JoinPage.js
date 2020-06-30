@@ -1,4 +1,7 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+
+import socket from '../utils/socket';
  
 import { PrimaryButton } from '../components/Button.js';
 import { H1 } from '../components/Text.js';
@@ -6,7 +9,21 @@ import { Input } from '../components/Form.js';
 
 function JoinPage() {
 
+  const history = useHistory();
+
   const [code, setCode] = React.useState('');
+
+  const joinMeeting = () => {
+    socket.emit('meeting_join', parseInt(code), (response, error) => {
+      error || history.push({pathname: '/meeting', state: {meeting: response}})
+    })
+  }
+
+  const endMeeting = () => {
+    socket.emit('meeting_end', parseInt(code), (response, error) => {
+      error || history.push({pathname: '/home'})
+    })
+  }
   
   return (
     <>
@@ -15,11 +32,16 @@ function JoinPage() {
             enter meeting code: 
           </H1>
           <Input value={code} onChange={e => setCode(e.target.value)} 
-                 type='text' variant='outlined' label='name'/> 
+                 type='text' variant='outlined' label='code'/> 
         </div>
         <div style={{textAlign: 'center'}}>
-          <PrimaryButton style={{minWidth: '16vw', fontSize: '6vh'}}>
+          <PrimaryButton onClick={joinMeeting} style={{minWidth: '16vw', fontSize: '6vh'}}>
             join 
+          </PrimaryButton>
+        </div>
+        <div style={{textAlign: 'center'}}>
+          <PrimaryButton onClick={endMeeting} style={{minWidth: '16vw', fontSize: '6vh'}}>
+            end 
           </PrimaryButton>
         </div>
     </>

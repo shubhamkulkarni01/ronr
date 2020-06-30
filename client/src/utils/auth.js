@@ -5,6 +5,7 @@ import db, { GoogleSignOn } from './firebase'
 import Cookies from 'universal-cookie'
 
 import request from './request'
+import socket from './socket'
 
 const Auth = React.createContext();
 export default Auth;
@@ -47,6 +48,7 @@ export const AuthProvider = (props) => {
     request('/api/user/login', {body}, true).then(response => {
       const { body } = response
       setUser(body)
+      socket.emit('identity', cookies.get('sessionCookie'))
       if (location.pathname === '/') {
         history.push('/home')
       }

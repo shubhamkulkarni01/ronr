@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Socket from '../utils/socket';
+import socket from '../utils/socket';
  
 import { PrimaryButton } from '../components/Button.js';
 import { H1 } from '../components/Text.js';
@@ -10,12 +10,13 @@ import { Input } from '../components/Form.js';
 function CreatePage() {
 
   const history = useHistory();
-  const socket = React.useContext(Socket);
 
   const createMeeting = () => {
     const meeting = {name}
 
-    socket.emit('create', meeting, ack => history.push('/home'));
+    socket.emit('meeting_create', meeting, (response, error) => {
+      error || history.push({pathname: "/meeting", state: {meeting: response}})
+    })
   }
 
   const [name, setName] = React.useState('');
