@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -7,21 +9,48 @@ import { PrimaryButton } from '../components/Button.js';
 import { H1 } from '../components/Text.js';
 import { Card, Layout, LayoutGroup } from '../components/Card.js';
 
+import Auth from '../utils/auth';
+
+const AdminPanel = styled(Card)`
+  margin: auto auto 3vh auto;
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    margin: 3vh auto 3vh auto;
+  }
+`;
+
 const MeetingPage = props => {
 
   const history = useHistory();
 
+  const { user } = React.useContext(Auth)
+
+  const [ meeting, setMeeting ] = React.useState(null)
+  const [ shift, setShift ] = React.useState({left: 0});
+
   React.useEffect(() => {
-    socket.on('meetingUpdate', meeting => {
+
+    console.log(user)
+
+    if(user)
+    socket.emit('meeting_join', props.location.state.code, (response, error) => {
+      setMeeting(response)
+    })
+
+    socket.on('meeting_update', meeting => {
       setMeeting(meeting)
     })
-  }, [])
+  }, [props.location.state.code, user])
 
-  const [ meeting, setMeeting ] = React.useState(props.location.state.meeting)
-
+  if(meeting)
   return (
+      <>
+      <div style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}>
+        <button onClick={() => setShift({ left: (shift.left === 0 ? shift.left : shift.left + 100)})}> left </button>
+        <button onClick={() => setShift({ left: (shift.left === -300 ? shift.left : shift.left - 100)})}> right</button>
+      </div>
     <Layout>
-      <LayoutGroup style={{height: '92vh', width: '21vw', padding: '0 2vw'}}>
+      <LayoutGroup shift={shift} width='21vw'>
         <Card elevation={5}>
           <H1>
             meeting code: {meeting.code}
@@ -39,7 +68,7 @@ const MeetingPage = props => {
             }
           </ul>
         </Card>
-        <Card style={{margin: 'auto auto 3vh auto'}} elevation={5}>
+        <AdminPanel elevation={5}>
           <H1>
             admin panel: 
           </H1>
@@ -50,14 +79,14 @@ const MeetingPage = props => {
               )
             }
           </ul>
-        </Card>
+        </AdminPanel>
       </LayoutGroup>
-      <LayoutGroup style={{height: '92vh', width: '58vw', padding: '0 2vw'}}>
+      <LayoutGroup shift={shift} width='58vw'>
         <H1>
         currently speaking: Shubham Kulkarni (VPF)
         </H1>
       </LayoutGroup>
-      <LayoutGroup style={{height: '92vh', width: '21vw', padding: '0 2vw'}}>
+      <LayoutGroup shift={shift} width='21vw'>
         <Card elevation={5}>
           <H1 color='grey!important' style={{marginBottom: '0'}}>
           Speaker's List (closed)
@@ -66,7 +95,12 @@ const MeetingPage = props => {
         </Card>
       </LayoutGroup>
     </Layout>
+    </>
   );
+
+  return (
+    <H1> Getting things ready... </H1>
+    )
 }
 
 export default MeetingPage;

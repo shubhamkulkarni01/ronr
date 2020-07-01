@@ -2,9 +2,8 @@ require('dotenv').config({ path: require('path').resolve(__dirname, '.env') });
 require('./models/db');
 
 const chalk = require('chalk');
-
 const express = require('express');
-
+const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 
@@ -20,6 +19,8 @@ app.use(require('cookie-parser')());
 app.use(cors({ origin: 'http://localhost:3000', credentials: true, exposedHeaders: ['user_found'] }));
 // print debuggable messages using morgan
 app.use(morgan('tiny'));
+
+app.use(express.static(path.join(__dirname, 'build')));
 
 // DEFAULT TESTING ROUTE
 app.get('/greeting', (req, res) => {

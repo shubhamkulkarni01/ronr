@@ -18,11 +18,11 @@ const generateRandomNumber = async () => {
 module.exports = socket => {
   socket.on('meeting_create', async (data, ack) => {
     const meeting = new Meeting(data);
-    meeting.host = socket.user._id;
+    meeting.host = socket.user;
     meeting.code = await generateRandomNumber();
     await meeting.save();
 
-    socket.join(meeting.code, () => ack(meeting));
+    socket.join(meeting.code, () => ack(meeting.code));
   });
 
   socket.on('meeting_join', async (code, ack) => {
@@ -34,7 +34,7 @@ module.exports = socket => {
       return ack(false, new Error('No meeting exists with that code'))
     socket.join(code, () => { 
       ack(meeting);
-      socket.to(code).emit('meetingUpdate', meeting)
+      socket.to(code).emit('meeting_update', meeting)
     })
   });
 

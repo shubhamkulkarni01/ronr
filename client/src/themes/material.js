@@ -12,5 +12,8 @@ export default {
   button: {
     text: '#3700b3!important',
     bg: '#fff!important'
+  },
+  breakpoints: {
+    mobile: '500px'
   }
 };

@@ -14,9 +14,7 @@ function JoinPage() {
   const [code, setCode] = React.useState('');
 
   const joinMeeting = () => {
-    socket.emit('meeting_join', parseInt(code), (response, error) => {
-      error || history.push({pathname: '/meeting', state: {meeting: response}})
-    })
+    history.push('/meeting', {code: parseInt(code)})
   }
 
   const endMeeting = () => {

@@ -47,8 +47,7 @@ export const AuthProvider = (props) => {
     const body = {credential}
     request('/api/user/login', {body}, true).then(response => {
       const { body } = response
-      setUser(body)
-      socket.emit('identity', cookies.get('sessionCookie'))
+      socket.emit('identity', cookies.get('sessionCookie'), ack => setUser(body))
       if (location.pathname === '/') {
         history.push('/home')
       }

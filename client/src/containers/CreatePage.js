@@ -15,7 +15,7 @@ function CreatePage() {
     const meeting = {name}
 
     socket.emit('meeting_create', meeting, (response, error) => {
-      error || history.push({pathname: "/meeting", state: {meeting: response}})
+      error || history.push('/meeting', {code: response})
     })
   }
 

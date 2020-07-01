@@ -4,12 +4,13 @@ const chalk = require('chalk');
 
 
 module.exports = socket => {
-  socket.on('identity', async sessionCookie => {
+  socket.on('identity', async (sessionCookie, ack) => {
     const identity = await admin.auth().verifySessionCookie(sessionCookie);
     socket.identity = identity
     const user = await User.findOne({email: identity.email});
     socket.user = user
 
     console.log(chalk.red(socket.user, socket.identity));
+    ack(identity, user)
   })
 }
