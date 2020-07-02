@@ -5,9 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 import socket from '../utils/socket';
  
-import { PrimaryButton } from '../components/Button.js';
 import { H1 } from '../components/Text.js';
-import { Card, Layout, LayoutGroup } from '../components/Card.js';
+import { Card, SwipeableLayout, LayoutGroup } from '../components/Card.js';
 
 import Auth from '../utils/auth';
 
@@ -26,7 +25,7 @@ const MeetingPage = props => {
   const { user } = React.useContext(Auth)
 
   const [ meeting, setMeeting ] = React.useState(null)
-  const [ shift, setShift ] = React.useState({left: 0});
+  const [ shift, setShift ] = React.useState({left: 0, X: 0, top: 0, Y: 0});
 
   React.useEffect(() => {
 
@@ -44,57 +43,55 @@ const MeetingPage = props => {
 
   if(meeting)
   return (
-      <>
-      <div style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}>
-        <button onClick={() => setShift({ left: (shift.left === 0 ? shift.left : shift.left + 100)})}> left </button>
-        <button onClick={() => setShift({ left: (shift.left === -300 ? shift.left : shift.left - 100)})}> right</button>
-      </div>
-    <Layout>
-      <LayoutGroup shift={shift} width='21vw'>
-        <Card elevation={5}>
-          <H1>
-            meeting code: {meeting.code}
-          </H1>
-        </Card>
-        <Card elevation={5}>
-          <H1>
-            participants: 
-          </H1>
-          <ul>
-            {
-              meeting.participants.map((element, key) => 
-                <li key={key}>{element.name} ({element.email})</li>
-              )
-            }
-          </ul>
-        </Card>
-        <AdminPanel elevation={5}>
-          <H1>
-            admin panel: 
-          </H1>
-          <ul>
-            {
-              meeting.participants.map((element, key) => 
-                <li key={key}>{element.name} ({element.email})</li>
-              )
-            }
-          </ul>
-        </AdminPanel>
-      </LayoutGroup>
-      <LayoutGroup shift={shift} width='58vw'>
-        <H1>
-        currently speaking: Shubham Kulkarni (VPF)
-        </H1>
-      </LayoutGroup>
-      <LayoutGroup shift={shift} width='21vw'>
-        <Card elevation={5}>
-          <H1 color='grey!important' style={{marginBottom: '0'}}>
-          Speaker's List (closed)
-          </H1>
-          <hr style={{backgroundColor: 'grey', width: '85%'}}/>
-        </Card>
-      </LayoutGroup>
-    </Layout>
+    <>
+      <SwipeableLayout>
+        <LayoutGroup width='21vw'>
+          <Card elevation={5}>
+            <H1>
+              meeting code: {meeting.code}
+            </H1>
+          </Card>
+          <Card elevation={5}>
+            <H1>
+              participants: 
+            </H1>
+            <ul>
+              {
+                meeting.participants.map((element, key) => 
+                  <li key={key}>{element.name} ({element.email})</li>
+                )
+              }
+            </ul>
+          </Card>
+          <AdminPanel elevation={5}>
+            <H1>
+              admin panel: 
+            </H1>
+            <ul>
+              {
+                meeting.participants.map((element, key) => 
+                  <li key={key}>{element.name} ({element.email})</li>
+                )
+              }
+            </ul>
+          </AdminPanel>
+        </LayoutGroup>
+        <LayoutGroup width='58vw'>
+          <Card elevation={5}>
+            <H1>
+            currently speaking: Shubham Kulkarni (VPF)
+            </H1>
+          </Card>
+        </LayoutGroup>
+        <LayoutGroup width='21vw'>
+          <Card elevation={5}>
+            <H1 color='grey!important' style={{marginBottom: '0'}}>
+            Speaker's List (closed)
+            </H1>
+            <hr style={{backgroundColor: 'grey', opacity: 0.5, width: '85%'}}/>
+          </Card>
+        </LayoutGroup>
+      </SwipeableLayout>
     </>
   );
 

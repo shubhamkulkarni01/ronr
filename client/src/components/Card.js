@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 import Paper from '@material-ui/core/Paper'
 
+import { swipeable } from './Gesture.js';
+
 export const Card = styled(Paper)`
   margin: 3vh auto 0 auto;
   max-width: 92vw;
@@ -15,6 +17,8 @@ export const Layout = styled.div`
   width: fit-content;
 `;
 
+export const SwipeableLayout = swipeable(Layout, 3, 0.3);
+
 export const LayoutGroup = styled.div`
   padding: 0 2vw;
   display: inline-flex;
@@ -22,13 +26,8 @@ export const LayoutGroup = styled.div`
   height: 92vh;
   width: ${props => props.width};
 
-  transition: left 0.5s ease;
-
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    position: relative;
     width: 100vw;
-
-    top: ${props => props.shift && props.shift.top}vw;
-    left: ${props => props.shift && props.shift.left}vw;
+    height: unset;
   }
 `;

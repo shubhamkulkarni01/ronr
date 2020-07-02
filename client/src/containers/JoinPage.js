@@ -29,7 +29,7 @@ function JoinPage() {
           <H1>
             enter meeting code: 
           </H1>
-          <Input value={code} onChange={e => setCode(e.target.value)} 
+          <Input value={code} onChange={e => setCode(e.target.value)} onKeyPress={e => e.key === 'Enter' && joinMeeting()}
                  type='text' variant='outlined' label='code'/> 
         </div>
         <div style={{textAlign: 'center'}}>
