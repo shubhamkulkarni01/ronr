@@ -6,16 +6,13 @@ import { useHistory } from 'react-router-dom';
 import socket from '../utils/socket';
  
 import { H1 } from '../components/Text.js';
+import { CancelButton } from '../components/Button.js';
 import { Card, SwipeableLayout, LayoutGroup } from '../components/Card.js';
 
 import Auth from '../utils/auth';
 
 const AdminPanel = styled(Card)`
-  margin: auto auto 3vh auto;
-
-  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    margin: 3vh auto 3vh auto;
-  }
+  margin: 3vh auto 3vh auto;
 `;
 
 const MeetingPage = props => {
@@ -25,7 +22,6 @@ const MeetingPage = props => {
   const { user } = React.useContext(Auth)
 
   const [ meeting, setMeeting ] = React.useState(null)
-  const [ shift, setShift ] = React.useState({left: 0, X: 0, top: 0, Y: 0});
 
   React.useEffect(() => {
 
@@ -65,15 +61,11 @@ const MeetingPage = props => {
           </Card>
           <AdminPanel elevation={5}>
             <H1>
-              admin panel: 
+              admin panel
             </H1>
-            <ul>
-              {
-                meeting.participants.map((element, key) => 
-                  <li key={key}>{element.name} ({element.email})</li>
-                )
-              }
-            </ul>
+            <CancelButton onClick={event => history.push('/home', {code: props.location.state.code})}>
+              leave meeting
+            </CancelButton>
           </AdminPanel>
         </LayoutGroup>
         <LayoutGroup width='58vw'>
