@@ -24,7 +24,7 @@
     "firebase-admin": "^8.12.1",
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
-    "socket.io": "^2.4.0",
+    "socket.io": "^2.5.0",
     "twilio": "^3.43.0",
     "validator": "^13.0.0"
   },
